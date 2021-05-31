@@ -75,6 +75,8 @@ class Challenges extends Component {
     const {
       challenges,
       isLoading,
+      isBillingAccountExpired,
+      isBillingAccountLoading,
       warnMessage,
       filterChallengeName,
       projects,
@@ -140,6 +142,8 @@ class Challenges extends Component {
           warnMessage={warnMessage}
           challenges={challenges}
           isLoading={isLoading}
+          isBillingAccountLoading={isBillingAccountLoading}
+          isBillingAccountExpired={isBillingAccountExpired}
           filterChallengeName={filterChallengeName}
           status={status}
           activeProjectId={activeProjectId}
@@ -162,6 +166,8 @@ Challenges.propTypes = {
   challenges: PropTypes.arrayOf(PropTypes.object),
   projectDetail: PropTypes.object,
   isLoading: PropTypes.bool,
+  isBillingAccountExpired: PropTypes.bool,
+  isBillingAccountLoading: PropTypes.bool,
   loadChallengesByPage: PropTypes.func,
   loadProject: PropTypes.func.isRequired,
   projectId: PropTypes.string,
@@ -184,8 +190,9 @@ const mapStateToProps = ({ challenges, sidebar, projects }) => ({
   challengeProjectId: challenges.projectId,
   activeProjectId: sidebar.activeProjectId,
   projects: sidebar.projects,
-  projectDetail: projects.projectDetail
-
+  projectDetail: projects.projectDetail,
+  isBillingAccountLoading: projects.isBillingAccountLoading,
+  isBillingAccountExpired: projects.isBillingAccountExpired
 })
 
 const mapDispatchToProps = {
