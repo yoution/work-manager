@@ -17,8 +17,6 @@ import xss from 'xss'
 const ChallengesComponent = ({
   challenges,
   isLoading,
-  isBillingAccountLoading,
-  isBillingAccountExpired,
   warnMessage,
   filterChallengeName,
   activeProject,
@@ -65,9 +63,9 @@ const ChallengesComponent = ({
           {(activeProject && activeProject.id) ? (
             <Link
               className={styles.buttonLaunchNew}
-              to={isBillingAccountLoading || isBillingAccountExpired ? `/projects/${activeProject.id}/challenges` : `/projects/${activeProject.id}/challenges/new`}
+              to={`/projects/${activeProject.id}/challenges/new`}
             >
-              <PrimaryButton disabled={isBillingAccountLoading || isBillingAccountExpired} text={'Launch New'} type={'info'} />
+              <PrimaryButton text={'Launch New'} type={'info'} />
             </Link>
           ) : (
             <span />
@@ -105,8 +103,6 @@ ChallengesComponent.propTypes = {
     name: PropTypes.string
   }),
   isLoading: PropTypes.bool,
-  isBillingAccountExpired: PropTypes.bool,
-  isBillingAccountLoading: PropTypes.bool,
   warnMessage: PropTypes.string,
   filterChallengeName: PropTypes.string,
   status: PropTypes.string,
