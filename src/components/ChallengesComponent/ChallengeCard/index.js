@@ -14,7 +14,7 @@ import ChallengeStatus from '../ChallengeStatus'
 import ChallengeTag from '../ChallengeTag'
 import styles from './ChallengeCard.module.scss'
 import { getFormattedDuration, formatDate } from '../../../util/date'
-import { CHALLENGE_STATUS, COMMUNITY_APP_URL, DIRECT_PROJECT_URL, MESSAGE, ONLINE_REVIEW_URL } from '../../../config/constants'
+import { CHALLENGE_STATUS, COMMUNITY_APP_URL, MESSAGE, ONLINE_REVIEW_URL } from '../../../config/constants'
 import ConfirmationModal from '../../Modal/ConfirmationModal'
 import { checkChallengeEditPermission } from '../../../util/tc'
 import AlertModal from '../../Modal/AlertModal'
@@ -102,7 +102,6 @@ const getPhaseInfo = (c) => {
  */
 const hoverComponents = (challenge, onUpdateLaunch, deleteModalLaunch) => {
   const communityAppUrl = `${COMMUNITY_APP_URL}/challenges/${challenge.id}`
-  const directUrl = `${DIRECT_PROJECT_URL}/contest/detail?projectId=${challenge.legacyId}`
   const orUrl = `${ONLINE_REVIEW_URL}/review/actions/ViewProjectDetails?pid=${challenge.legacyId}`
   const isTask = _.get(challenge, 'task.isTask', false)
 
@@ -121,8 +120,6 @@ const hoverComponents = (challenge, onUpdateLaunch, deleteModalLaunch) => {
         <a className={styles.link} href={communityAppUrl} target='_blank'>View Challenge</a>
         {!isTask && (
           <div className={styles.linkGroupLeftBottom}>
-            <a className={styles.link} href={directUrl} target='_blank'>Direct</a>
-            <span className={styles.linkDivider}>|</span>
             <a className={styles.link} href={orUrl} target='_blank'>OR</a>
           </div>
         )}
@@ -139,10 +136,6 @@ const hoverComponents = (challenge, onUpdateLaunch, deleteModalLaunch) => {
         <a className={styles.link} href={communityAppUrl}>View Challenge</a>
         {!isTask && (
           <div className={styles.linkGroupLeftBottom}>
-            <Tooltip content={MESSAGE.NO_LEGACY_CHALLENGE}>
-              <span className={styles.link}>Direct</span>
-            </Tooltip>
-            <span className={styles.linkDivider}>|</span>
             <Tooltip content={MESSAGE.NO_LEGACY_CHALLENGE}>
               <span className={styles.link}>OR</span>
             </Tooltip>
